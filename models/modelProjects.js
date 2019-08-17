@@ -4,6 +4,12 @@ function getProjects() {
   return db('projects');
 }
 
+function addProject(data) {
+  return db('projects')
+    .insert(data);
+}
+
 module.exports = {
-  getProjects
+  getProjects,
+  addProject
 }

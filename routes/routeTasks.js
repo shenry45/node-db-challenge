@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 
-const db = require('../models/modelProjects.js');
+const db = require('../models/modelTasks.js');
 
 const router = express.Router();
 
@@ -9,25 +9,25 @@ router.use(helmet());
 
 router.get('/', async (req, res) => {
   try {
-    const projects = await db.getProjects();
+    const tasks = await db.getTasks();
 
     // check if completed value is int or bool
-    const completedFormat = projects.map(proj => {
-      if (proj.completed === 1) {
-        proj.completed = true;
+    const completedFormat = tasks.map(task => {
+      if (task.completed === 1) {
+        task.completed = true;
       } else {
-        proj.completed = false;
+        task.completed = false;
       }
 
-      return proj;
+      return task;
     })
     
     // resp
-    if (projects.length) {
+    if (tasks.length) {
       res.status(200).json(completedFormat);
     } else {
       res.status(400).json({
-        message: "No projects are currently available"
+        message: "No tasks are currently available"
       })
     }
   } catch (err) {
@@ -45,11 +45,11 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    if (data.name) {
-      const project = await db.addProject(data);
+    if (data.description && data.project_id) {
+      const task = await db.addTask(data);
   
-      if (project) {
-        res.status(201).json(project);
+      if (task) {
+        res.status(201).json(task);
       }
     } else {
       res.status(400).json({
