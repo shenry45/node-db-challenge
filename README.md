@@ -40,11 +40,19 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+Relational databases are structures that contain data whereas SQL is a data manipulation laguage responsible for CRUD of the data with said databases.
+
 - [ ] Why do tables need a `primary key`?
+
+Tables need a primary key for reference without the ability to be altered.
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+The name of a given table column should be in this sytax '[referenced table name]-[referenced key]'.
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+For a many-to-many relationship between two table, a third table mmust be introduced with foreign keys linking the two original tables.
 
 ## Minimum Viable Product
 
