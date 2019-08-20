@@ -4,6 +4,12 @@ function getProjects() {
   return db('projects');
 }
 
+//stretch
+function getProjectByID(id) {
+  return db('projects as p')
+    .where('id', id);
+}
+
 function addProject(data) {
   return db('projects')
     .insert(data);
@@ -11,5 +17,6 @@ function addProject(data) {
 
 module.exports = {
   getProjects,
+  getProjectByID,
   addProject
 }

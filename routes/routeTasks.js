@@ -37,6 +37,27 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  const {id} = req.params;
+
+  try {
+    const tasks = await db.getTasksByProjID(id);
+    
+    // resp
+    if (tasks.length) {
+      res.status(200).json(tasks);
+    } else {
+      res.status(400).json({
+        message: "No tasks are currently available"
+      })
+    }
+  } catch (err) {
+    res.status(500).json({
+      error: err.message
+    });
+  }
+});
+
 router.post('/', async (req, res) => {
   const data = req.body;
 

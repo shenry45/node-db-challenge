@@ -4,6 +4,11 @@ function getTasks() {
   return db('tasks');
 }
 
+function getTasksByProjID(id) {
+  return db('tasks')
+    .where('id', id);
+}
+
 function addTask(data) {
   return db('tasks')
     .insert(data);
@@ -11,5 +16,6 @@ function addTask(data) {
 
 module.exports = {
   getTasks,
+  getTasksByProjID,
   addTask
 }
